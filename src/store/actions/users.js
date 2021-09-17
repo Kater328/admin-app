@@ -1,5 +1,5 @@
-import usersApi from "../../utils/usersApi";
-import { SET_USERS, DELETE_USER, UPDATE_USER } from "../reducers";
+import mainApi from "../../utils/mainApi";
+import { SET_USERS, DELETE_USER, UPDATE_USER } from "../reducers/users";
 
 const setUsers = (users) => ({
     type: SET_USERS,
@@ -7,9 +7,8 @@ const setUsers = (users) => ({
 });
 
 export const getUsers = () => {
-    console.log('new');
     return (dispatch) => {
-        usersApi.get()
+        mainApi.get("users")
         .then(resp => {
             dispatch(setUsers(resp.data))
         })
@@ -18,7 +17,7 @@ export const getUsers = () => {
 
 export const deleteUser = (id) => {
     return (dispatch) => {
-        usersApi.delete(`/${id}`)
+        mainApi.delete(`users/${id}`)
         .then(() => {
             dispatch({
                 type: DELETE_USER,
@@ -30,7 +29,7 @@ export const deleteUser = (id) => {
 
 export const updateUser = (user) => {
     return (dispatch) => {
-        usersApi.put(`/${user.id}`, {...user})
+        mainApi.put(`users/${user.id}`, {...user})
         .then(({data}) => {
             dispatch({
                 type: UPDATE_USER,

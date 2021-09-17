@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import React from "react";
-import { deleteUser, updateUser } from "../../store/actions";
+import { deleteUser, updateUser } from "../../store/actions/users";
 import ItemForm from "./ItemForm";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -142,7 +142,7 @@ class Form extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-    const user = state.users.find(
+    const user = state.users.users.find(
         user => 
         user.id === Number(props.match.params.id)
     );

@@ -1,7 +1,4 @@
-import { useEffect } from "react";
 import {Route, Switch, useRouteMatch} from "react-router-dom";
-import { connect } from "react-redux";
-import { getUsers } from "../../store/actions";
 import Container  from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import UserList from "./UsersList";
@@ -9,10 +6,6 @@ import Form from "./Form";
 
 const Users = (props) => {
     const match = useRouteMatch();
-
-    useEffect(() => {
-        props.getUsers()
-    }, []);
 
     return (
         <Container maxWidth="lg">
@@ -34,14 +27,4 @@ const Users = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        users: state.users
-    };
-}
-
-const mapDispatchToProps = {
-    getUsers
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default Users;
